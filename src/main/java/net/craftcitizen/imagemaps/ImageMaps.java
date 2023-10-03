@@ -11,6 +11,10 @@ import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.TextComponent;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.util.datafix.DataFixTypes;
+import net.minecraft.world.level.saveddata.maps.MapItemSavedData;
+import net.minecraft.world.level.storage.DimensionDataStorage;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Rotation;
@@ -21,12 +25,14 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
+import org.bukkit.craftbukkit.v1_20_R2.CraftServer;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.server.MapInitializeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.MapMeta;
 import org.bukkit.map.MapView;
@@ -37,10 +43,12 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.function.Function;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
 
@@ -195,8 +203,7 @@ public class ImageMaps extends JavaPlugin implements Listener {
             section.getValues(false).forEach((a, b) -> {
                 int id = Integer.parseInt(a);
                 ImageMap imageMap = (ImageMap) b;
-                @SuppressWarnings("deprecation")
-                MapView map = Bukkit.getMap(id);
+                MapView map = PaperWorkaround.getMap(id);
                 BufferedImage image = getImage(imageMap.getFilename());
                 maps.put(imageMap, id);
 
@@ -222,7 +229,7 @@ public class ImageMaps extends JavaPlugin implements Listener {
 
         maps.entrySet().removeIf(a -> {
             @SuppressWarnings("deprecation")
-            MapView map = Bukkit.getMap(a.getValue().intValue());
+            MapView map = PaperWorkaround.getMap(a.getValue().intValue());
             BufferedImage image = getImage(a.getKey().getFilename());
 
             return map == null || image == null;
@@ -428,7 +435,7 @@ public class ImageMaps extends JavaPlugin implements Listener {
             }
 
             @SuppressWarnings("deprecation")
-            MapView map = Bukkit.getMap(entry.getValue());
+            MapView map = PaperWorkaround.getMap(entry.getValue());
 
             if (map == null) {
                 continue;
@@ -455,7 +462,7 @@ public class ImageMaps extends JavaPlugin implements Listener {
         }
 
         maps.entrySet().stream().filter(a -> a.getKey().getFilename().equalsIgnoreCase(filename))
-            .map(a -> Bukkit.getMap(a.getValue())).flatMap(a -> a.getRenderers().stream())
+            .map(a -> PaperWorkaround.getMap(a.getValue())).flatMap(a -> a.getRenderers().stream())
             .filter(ImageMapRenderer.class::isInstance).forEach(a -> ((ImageMapRenderer) a).recalculateInput(image));
         return true;
     }
