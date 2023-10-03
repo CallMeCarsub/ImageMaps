@@ -1,12 +1,12 @@
 package net.craftcitizen.imagemaps;
 
 import com.google.common.io.Files;
-import de.craftlancer.core.LambdaRunnable;
-import de.craftlancer.core.SemanticVersion;
-import de.craftlancer.core.Utils;
-import de.craftlancer.core.util.MessageLevel;
-import de.craftlancer.core.util.MessageUtil;
-import de.craftlancer.core.util.Tuple;
+import net.craftcitizen.imagemaps.clcore.LambdaRunnable;
+import net.craftcitizen.imagemaps.clcore.SemanticVersion;
+import net.craftcitizen.imagemaps.clcore.Utils;
+import net.craftcitizen.imagemaps.clcore.util.MessageLevel;
+import net.craftcitizen.imagemaps.clcore.util.MessageUtil;
+import net.craftcitizen.imagemaps.clcore.util.Tuple;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
@@ -62,6 +62,7 @@ public class ImageMaps extends JavaPlugin implements Listener {
     private Map<ImageMap, Integer> maps = new HashMap<>();
 
     private Material toggleItem;
+    public static ImageMaps instance;
 
     static {
         ConfigurationSerialization.registerClass(ImageMap.class);
@@ -69,6 +70,7 @@ public class ImageMaps extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
+        instance = this;
         BaseComponent prefix = new TextComponent(new ComponentBuilder("[").color(ChatColor.GRAY).append("ImageMaps")
                                                                           .color(ChatColor.AQUA).append("]")
                                                                           .color(ChatColor.GRAY).create());

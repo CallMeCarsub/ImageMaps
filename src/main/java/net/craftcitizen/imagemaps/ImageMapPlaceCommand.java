@@ -1,9 +1,9 @@
 package net.craftcitizen.imagemaps;
 
-import de.craftlancer.core.Utils;
-import de.craftlancer.core.util.MessageLevel;
-import de.craftlancer.core.util.MessageUtil;
-import de.craftlancer.core.util.Tuple;
+import net.craftcitizen.imagemaps.clcore.Utils;
+import net.craftcitizen.imagemaps.clcore.util.MessageLevel;
+import net.craftcitizen.imagemaps.clcore.util.MessageUtil;
+import net.craftcitizen.imagemaps.clcore.util.Tuple;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;

@@ -1,8 +1,8 @@
 package net.craftcitizen.imagemaps;
 
-import de.craftlancer.core.LambdaRunnable;
-import de.craftlancer.core.util.MessageLevel;
-import de.craftlancer.core.util.MessageUtil;
+import net.craftcitizen.imagemaps.clcore.LambdaRunnable;
+import net.craftcitizen.imagemaps.clcore.util.MessageLevel;
+import net.craftcitizen.imagemaps.clcore.util.MessageUtil;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 

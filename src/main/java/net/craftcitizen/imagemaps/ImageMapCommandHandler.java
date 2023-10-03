@@ -1,6 +1,6 @@
 package net.craftcitizen.imagemaps;
 
-import de.craftlancer.core.command.CommandHandler;
+import net.craftcitizen.imagemaps.clcore.command.CommandHandler;
 
 public class ImageMapCommandHandler extends CommandHandler {
     public ImageMapCommandHandler(ImageMaps plugin) {

@@ -1,9 +1,8 @@
 package net.craftcitizen.imagemaps;
 
-import de.craftlancer.core.LambdaRunnable;
+import net.craftcitizen.imagemaps.clcore.LambdaRunnable;
 import org.bukkit.entity.Player;
 import org.bukkit.map.MapCanvas;
-import org.bukkit.map.MapPalette;
 import org.bukkit.map.MapRenderer;
 import org.bukkit.map.MapView;
 

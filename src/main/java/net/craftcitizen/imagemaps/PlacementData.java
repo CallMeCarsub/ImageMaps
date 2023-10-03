@@ -1,6 +1,6 @@
 package net.craftcitizen.imagemaps;
 
-import de.craftlancer.core.util.Tuple;
+import net.craftcitizen.imagemaps.clcore.util.Tuple;
 
 /**
  * Data associated with placing an image.

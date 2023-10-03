@@ -3,8 +3,8 @@ package net.craftcitizen.imagemaps;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
-import de.craftlancer.core.util.MessageLevel;
-import de.craftlancer.core.util.MessageUtil;
+import net.craftcitizen.imagemaps.clcore.util.MessageLevel;
+import net.craftcitizen.imagemaps.clcore.util.MessageUtil;
 
 public class ImageMapCleanupCommand extends ImageMapSubCommand {
 
